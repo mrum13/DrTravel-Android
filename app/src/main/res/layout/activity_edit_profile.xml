@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.lainnya.EditProfileActivity"
+    android:background="@color/colorWhilte">
+
+    <include
+        layout="@layout/toolbar_kembali"
+        android:id="@+id/toolbar_edit_akun"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_edit_akun"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="30dp">
+
+        <TextView
+            android:id="@+id/tv_editnama_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:textAppearance="@style/tv_edit_profile"/>
+
+        <EditText
+            android:id="@+id/et_editnama_profile"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tv_editnama_profile"
+            android:textAppearance="@style/tv_edit_profile"
+            android:hint="Masukkan nama"
+            android:background="@color/colorWhilte"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/tv_editemail_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textAppearance="@style/tv_edit_profile"
+            android:layout_below="@id/et_editnama_profile"
+            android:layout_marginTop="15dp"/>
+
+        <EditText
+            android:id="@+id/et_editemail_profile"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/tv_editemail_profile"
+            android:textAppearance="@style/tv_edit_profile"
+            android:hint="Masukkan email"
+            android:background="@color/colorWhilte"
+            android:imeOptions="actionDone"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"/>
+
+        <Button
+            android:id="@+id/btn_simpan_akun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_alignParentBottom="true"
+            android:text="Simpan"
+            android:textAppearance="@style/btn_simpan_profile"
+            android:foreground="@drawable/ripple_effect"
+            android:clickable="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

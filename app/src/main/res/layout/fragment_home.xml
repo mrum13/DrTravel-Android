@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/gambar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/gambar"
+                android:scaleType="fitXY"
+                android:layout_marginLeft="21dp"/>
+
+            <EditText
+                android:id="@+id/et_tabSearch"
+                android:layout_below="@id/gambar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_tab_search"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
+                android:layout_marginHorizontal="20dp"
+                android:hint="Mau ke mana ?"
+                android:inputType="text"
+                android:maxLines="1"
+                android:focusable="false"/>
+
+            <LinearLayout
+                android:id="@+id/container_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_tabSearch"
+                android:layout_marginTop="27dp"
+                android:layout_marginHorizontal="10dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_subMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tempat_wisa"
+                android:layout_below="@id/container_card"
+                android:layout_alignStart="@id/et_tabSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:text="Tempat Wisata Populer di Makassar"
+                android:textAppearance="@style/tempat_wisa"
+                android:gravity="top"
+                android:layout_alignLeft="@id/container_card" />
+
+            <TextView
+                android:id="@+id/rekomendasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@id/tempat_wisa"
+                android:layout_below="@id/tempat_wisa"
+                android:layout_marginTop="6dp"
+                android:text="Rekomendasi tempat wisata untuk anda"
+                android:textAppearance="@style/rekomendasi"
+                android:gravity="top"
+                android:layout_alignLeft="@id/tempat_wisa" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_wisata_menarik"
+                android:layout_below="@id/rekomendasi"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="14dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

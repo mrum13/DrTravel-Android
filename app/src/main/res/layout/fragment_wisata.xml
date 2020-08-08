@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.wisata.WisataFragment"
+    android:background="@color/colorWhilte">
+
+    <include
+        layout="@layout/toolbar_filter"
+        android:id="@+id/toolbar_list_wisata"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_wisata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_list_wisata"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="20dp"/>
+
+</RelativeLayout>

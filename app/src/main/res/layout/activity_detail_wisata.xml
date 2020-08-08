@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailwisata.DetailWisataActivity">
+
+    <include
+        layout="@layout/toolbar_kembali"
+        android:id="@+id/toolbar_detail_wisata"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar_detail_wisata">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:id="@+id/img_detail_wisata"
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/gambar_benteng"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/tv_judul_detail_wisata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_judul_wisata_detail"
+                android:layout_below="@id/img_detail_wisata"
+                android:layout_marginTop="25dp"
+                android:layout_marginLeft="20dp"
+                android:text="Benteng Rotterdam"/>
+
+            <TextView
+                android:id="@+id/tv_subjudul_detail_wisata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_subjudul_wisata_detail"
+                android:layout_below="@id/tv_judul_detail_wisata"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="Makassar, Sulawesi Selatan"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_btn_VR"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="5dp"
+                android:layout_alignRight="@id/img_detail_wisata"
+                android:layout_below="@id/img_detail_wisata"
+                android:layout_marginTop="15dp"
+                android:background="@color/cardView">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/image_vr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_vr"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="VR"
+                        android:textAppearance="@style/vr"
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@id/image_vr"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/tv_isi_detail_wisata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_isi_wisata_detail"
+                android:layout_below="@id/tv_subjudul_detail_wisata"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Makassar, Sulawesi Selatan"/>
+
+            <TextView
+                android:id="@+id/tv_galleri_detail_wisata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_judul_wisata_detail"
+                android:layout_below="@id/tv_isi_detail_wisata"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:text="Galleri"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_galeri_wisata_detail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/tv_galleri_detail_wisata"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

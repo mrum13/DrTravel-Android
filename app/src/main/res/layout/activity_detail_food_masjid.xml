@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detailfoodmasjid.DetailFoodMasjidActivity">
+
+    <include
+        layout="@layout/toolbar_kembali"
+        android:id="@+id/toolbar_detail_foodmasjid"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_detail_foodmasjid">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_detail_foodmasjid"
+                android:layout_width="match_parent"
+                android:layout_height="186dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/coto_makassar"/>
+
+            <TextView
+                android:id="@+id/tv_judul_detail_foodmasjid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_detail_foodmasjid"
+                android:layout_marginTop="24dp"
+                android:layout_marginLeft="20dp"
+                android:textAppearance="@style/tv_judul_wisata_detail"
+                android:text="Coto Makassaar"/>
+
+            <TextView
+                android:id="@+id/tv_subjudul_detail_foodmasjid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_subjudul_wisata_detail"
+                android:layout_below="@id/tv_judul_detail_foodmasjid"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:text="Makassar, Sulawesi Selatan"/>
+
+            <TextView
+                android:id="@+id/tv_isi_detail_foodmasjid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/tv_isi_wisata_detail"
+                android:layout_below="@id/tv_subjudul_detail_foodmasjid"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="20dp"
+                android:text="Makassar, Sulawesi Selatan"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_cari_food_masjid"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorbtn"
+        android:text="@string/cari_makanmasjid"
+        android:textAppearance="@style/btn_cari_makanmasjid"/>
+
+</RelativeLayout>

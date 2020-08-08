@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.lainnya.LainnyaFragment">
+
+    <include
+        layout="@layout/toolbar_menu"
+        android:id="@+id/toolbar_menu_lainnya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_lainnya"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:layout_below="@id/toolbar_menu_lainnya">
+
+        <ImageView
+            android:id="@+id/image_akun"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/ic_profile_rum_round" />
+
+        <TextView
+            android:id="@+id/tv_nama_akun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Muhammad Rum Salengke"
+            android:textAppearance="@style/tv_nama_akun"
+            android:layout_toRightOf="@id/image_akun"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/tv_email_akun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mrum1359@gmail.com"
+            android:textAppearance="@style/tv_email_akun"
+            android:layout_toRightOf="@id/image_akun"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@id/tv_nama_akun"
+            android:layout_marginTop="5dp"/>
+
+        <ImageView
+            android:id="@+id/edit_profil_akun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:padding="16dp"/>
+
+        <RelativeLayout
+            android:id="@+id/layout_undang_teman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_akun"
+            android:layout_marginTop="90dp">
+
+            <ImageView
+                android:id="@+id/ic_undang_teman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_undang"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:id="@+id/tv_undang_teman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Undang Teman"
+                android:paddingLeft="50dp"
+                android:textAppearance="@style/tv_btn_akun"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_bantuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_undang_teman"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/ic_bantuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tanya"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/tv_bantuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bantuan"
+                android:paddingLeft="50dp"
+                android:textAppearance="@style/tv_btn_akun"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_bantuan"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/ic_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_info"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Infor Aplikasi"
+                android:paddingLeft="50dp"
+                android:textAppearance="@style/tv_btn_akun"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_keluar_akun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_akun"
+            android:layout_alignParentBottom="true"
+            android:text="Keluar"
+            android:textAppearance="@style/btn_keluar"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.inreadyworkgroup.drtravel_beta.ui.home.HomeFragment"
+        android:label="Beranda"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_wisata"
+        android:name="com.inreadyworkgroup.drtravel_beta.ui.wisata.WisataFragment"
+        android:label="Wisata"
+        tools:layout="@layout/fragment_wisata" />
+
+    <fragment
+        android:id="@+id/navigation_penanda"
+        android:name="com.inreadyworkgroup.drtravel_beta.ui.penanda.PenandaFragment"
+        android:label="Penanda"
+        tools:layout="@layout/fragment_penanda" />
+
+    <fragment
+        android:id="@+id/navigation_lainnya"
+        android:name="com.inreadyworkgroup.drtravel_beta.ui.lainnya.LainnyaFragment"
+        android:label="Lainnya"
+        tools:layout="@layout/fragment_lainnya" />
+
+</navigation>
