@@ -352,4 +352,195 @@
 
     </style>
 
+    <style name="ajak_teman_">
+
+        <item name="android:textSize">
+            24sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_medium
+        </item>
+
+    </style>
+
+    <style name="btn_ajak_teman">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_medium
+        </item>
+
+    </style>
+
+    <style name="info_app">
+
+        <item name="android:textSize">
+            40sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_medium
+        </item>
+
+    </style>
+
+    <style name="tentang_apl">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_medium
+        </item>
+
+    </style>
+
+    <style name="selamat_dat">
+
+        <item name="android:textSize">
+            20sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_medium
+        </item>
+
+    </style>
+
+    <style name="lupa_kata_s">
+
+        <item name="android:textSize">
+            14sp
+        </item>
+
+        <item name="android:textColor">
+            #6E000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_regular
+        </item>
+
+    </style>
+
+    <style name="btn_masuk">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #FFFFFF
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_bold
+        </item>
+
+    </style>
+
+    <style name="btn_daftar">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #1CB7AD
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_bold
+        </item>
+
+    </style>
+
+    <style name="masukkan_em">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_regular
+        </item>
+    </style>
+
+    <style name="jika_anda_m">
+
+        <item name="android:textSize">
+            15sp
+        </item>
+
+        <item name="android:textColor">
+            #000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_regular
+        </item>
+
+    </style>
+
+    <style name="sudah_punya">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #6E000000
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_regular
+        </item>
+
+    </style>
+
+    <style name="masuk">
+
+        <item name="android:textSize">
+            18sp
+        </item>
+
+        <item name="android:textColor">
+            #2077F9
+        </item>
+
+        <item name="android:fontFamily">
+            @font/roboto_regular
+        </item>
+
+    </style>
+
 </resources>

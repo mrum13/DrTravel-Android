@@ -127,7 +127,7 @@
                 android:id="@+id/tv_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Infor Aplikasi"
+                android:text="Info Aplikasi"
                 android:paddingLeft="50dp"
                 android:textAppearance="@style/tv_btn_akun"
                 android:layout_centerVertical="true"

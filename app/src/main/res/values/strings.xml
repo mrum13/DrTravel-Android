@@ -5,4 +5,6 @@
     <string name="toolbar">Toolbar</string>
     <string name="cari_makanmasjid">Cari Makanan</string>
     <string name="toolbarMenu">toolbar</string>
+    <string name="ajak_teman_">Ajak teman liburan bersama \nDr Travel, yuk!</string>
+    <string name="tentang_app">Info Aplikasi 1.0</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.inreadyworkgroup.drtravel_beta.ui.lainnya;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -66,14 +67,17 @@ public class LainnyaFragment extends Fragment {
         tvbantuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String url = "http://www.drtravel.id";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
 
         tvinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getContext(), InfoAppActivity.class));
             }
         });
 
