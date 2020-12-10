@@ -6,6 +6,8 @@ import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.viewmodelmenu.ViewMod
 import java.util.ArrayList;
 
 public class DataGaleri {
+
+    //Data Wisata
     private static int[] gambarBenteng = {
             R.drawable.benteng1,
             R.drawable.benteng2,
@@ -18,6 +20,7 @@ public class DataGaleri {
             R.drawable.panlos3
     };
 
+    //Data tempat penginapan
     private static int[] gambarPaduppa = {
             R.drawable.paduppa1,
             R.drawable.paduppa2,

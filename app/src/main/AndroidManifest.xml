@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.inreadyworkgroup.drtravel_beta">
+          package="com.inreadyworkgroup.drtravel_beta">
+	
+	<uses-feature android:name="android.hardware.camera.ar"/>
+	
+	<uses-permission android:name="android.permission.CAMERA"/>
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.lainnya.UndangTemanActivity"/>
-        <activity android:name=".ui.lainnya.EditProfileActivity" />
-        <activity android:name=".ui.detailfoodmasjid.DetailFoodMasjidActivity" />
-        <activity android:name=".ui.detailwisata.DetailWisataActivity" />
-        <activity android:name=".ui.home.pencarian.PencarianActivity" />
-        <activity android:name=".ui.home.cardmenu.WadahMenuActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	
+	<application
+		android:usesCleartextTraffic="true"
+
+		android:allowBackup="true"
+			android:icon="@mipmap/ic_logo_round"
+			android:label="@string/app_name"
+			android:roundIcon="@mipmap/ic_logo_round"
+			android:supportsRtl="true"
+			android:theme="@style/AppTheme">
+		<activity android:name=".ui.detailwisata.DetailGaleri">
+		</activity>
+		<activity android:name=".ui.augmentedreality.ARActivity">
+		</activity>
+		<activity android:name=".ui.lainnya.UndangTemanActivity"/>
+		<activity android:name=".ui.lainnya.EditProfileActivity"/>
+		<activity android:name=".ui.detailfoodmasjid.DetailFoodMasjidActivity"/>
+		<activity android:name=".ui.detailwisata.DetailWisataActivity"/>
+		<activity android:name=".ui.home.pencarian.PencarianActivity"/>
+		<activity android:name=".ui.home.cardmenu.WadahMenuActivity"/>
+		<activity android:name=".ui.lainnya.InfoAppActivity"/>
+		<activity android:name=".splashscreen.SplashScreenActivity"/>
+		<activity android:name=".login.LoginActivity"/>
+		<activity android:name=".login.RegisterActivity"/>
+		<activity android:name=".MainActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		
+		<meta-data
+				android:name="com.google.ar.core"
+				android:value="required"/>
+	</application>
 
 </manifest>

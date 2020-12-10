@@ -10,11 +10,14 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.inreadyworkgroup.drtravel_beta.login.RegisterActivity;
+import com.inreadyworkgroup.drtravel_beta.storage.SharedPrefManager;
 import com.inreadyworkgroup.drtravel_beta.ui.home.HomeFragment;
 import com.inreadyworkgroup.drtravel_beta.ui.lainnya.LainnyaFragment;
 import com.inreadyworkgroup.drtravel_beta.ui.penanda.PenandaFragment;
@@ -32,6 +35,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         BottomNavigationView navView =findViewById(R.id.bn_main);
         navView.setOnNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!SharedPrefManager.getInstance(this).isLoggedIn()){
+            Intent intent = new Intent(this, RegisterActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
     private boolean loadFragment(Fragment fragment){

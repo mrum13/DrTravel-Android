@@ -1,6 +1,7 @@
 package com.inreadyworkgroup.drtravel_beta.ui.detailwisata;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder
         final ViewModelGaleri DA = list.get(position);
 
         Glide.with(context).load(DA.getGambarGaleri()).into(holder.imgGaleri);
-
     }
 
     @Override

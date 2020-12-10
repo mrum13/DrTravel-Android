@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.inreadyworkgroup.drtravel_beta.ui.augmentedreality.ARActivity;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.DataMenuAtas;
 
 import com.bumptech.glide.Glide;
@@ -48,7 +49,8 @@ public class AdapterSubMenu extends RecyclerView.Adapter<AdapterSubMenu.ViewHold
             public void onClick(View v) {
                 switch (position) {
                     case 0:
-                        Toast.makeText(v.getContext(), "Anda memilih AR 3D", Toast.LENGTH_SHORT).show();
+                        Intent kear = new Intent(context, ARActivity.class);
+                        context.startActivity(kear);
                         break;
                     case 1:
                         Intent kefood = new Intent(context, WadahMenuActivity.class);

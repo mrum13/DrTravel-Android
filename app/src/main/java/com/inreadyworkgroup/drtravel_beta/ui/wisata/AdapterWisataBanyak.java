@@ -43,7 +43,7 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
 
         Glide.with(context).load( DA.getGambarWisata()).into(holder.imgWisata);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.imgWisata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent kedetail = new Intent(context, DetailWisataActivity.class);
@@ -67,12 +67,16 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgWisata;
         TextView tvWisata;
+        ImageView favBefore;
+        ImageView favAfter;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvWisata = itemView.findViewById(R.id.tv_item_wisata);
             imgWisata = itemView.findViewById(R.id.img_item_wisata);
+            favBefore = itemView.findViewById(R.id.img_favorit_before);
+            favAfter = itemView.findViewById(R.id.img_favorit_after);
         }
     }
 }

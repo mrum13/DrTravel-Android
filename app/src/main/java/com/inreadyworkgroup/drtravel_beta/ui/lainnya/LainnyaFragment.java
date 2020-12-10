@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.models.User;
+import com.inreadyworkgroup.drtravel_beta.storage.SharedPrefManager;
 
 public class LainnyaFragment extends Fragment {
     TextView toolbar;
@@ -32,6 +34,11 @@ public class LainnyaFragment extends Fragment {
 
         toolbar = root.findViewById(R.id.tv_header);
         toolbar.setText("Akun");
+
+        //nama dan email berdasarkan data login
+        User user = SharedPrefManager.getInstance(getActivity()).getUser();
+        tv_nama.setText(user.getName());
+        tv_email.setText(user.getEmail());
 
         Button btnKeluar = (Button) root.findViewById(R.id.btn_keluar_akun);
         btnKeluar.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +84,8 @@ public class LainnyaFragment extends Fragment {
         tvinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), InfoAppActivity.class));
+                Intent keinfo = new Intent(getContext(),InfoAppActivity.class);
+                startActivity(keinfo);
             }
         });
 

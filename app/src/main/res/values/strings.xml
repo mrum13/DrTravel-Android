@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">DrTravel_Beta</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="toolbar">Toolbar</string>
-    <string name="cari_makanmasjid">Cari Makanan</string>
-    <string name="toolbarMenu">toolbar</string>
-    <string name="ajak_teman_">Ajak teman liburan bersama \nDr Travel, yuk!</string>
-    <string name="tentang_app">Info Aplikasi 1.0</string>
+	<string name="app_name">DrTravel_Beta</string>
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="toolbar">Toolbar</string>
+	<string name="cari_makanmasjid">Cari Makanan</string>
+	<string name="toolbarMenu">toolbar</string>
+	<string name="ajak_teman_">Ajak teman liburan bersama \nDr Travel, yuk!</string>
+	<string name="tentang_app">Info Aplikasi 1.0</string>
 </resources>

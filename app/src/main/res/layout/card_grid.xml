@@ -8,7 +8,7 @@
     app:cardCornerRadius="8dp"
     android:layout_gravity="center">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="200dp"
         android:layout_height="200dp">
 
@@ -18,29 +18,44 @@
             android:layout_height="150dp"
             android:layout_marginBottom="4dp"
             android:scaleType="centerCrop"
-            tools:src="@color/colorAccent" />
+            tools:src="@color/colorAccent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/tv_item_wisata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/img_item_wisata"
             android:layout_marginTop="8dp"
             tools:text="Wisata"
             android:textAppearance="@style/tempat_wisa"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_item_wisata"
             android:paddingLeft="8dp"
             android:paddingRight="14dp"/>
 
         <ImageView
-            android:id="@+id/img_favorit"
+            android:id="@+id/img_favorit_after"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_item_wisata"
             android:layout_below="@id/img_item_wisata"
             android:layout_marginTop="8dp"
             android:src="@drawable/ic_favorit"
-            android:layout_marginRight="8dp"/>
+            android:layout_marginRight="8dp"
+            android:visibility="gone"/>
+    
+        <ImageView
+                android:id="@+id/img_favorit_before"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_item_wisata"
+                android:layout_below="@id/img_item_wisata"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/bola_background"
+                android:layout_marginRight="16dp"/>
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
