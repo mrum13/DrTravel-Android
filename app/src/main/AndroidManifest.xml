@@ -28,10 +28,12 @@
 		<activity android:name=".ui.home.pencarian.PencarianActivity"/>
 		<activity android:name=".ui.home.cardmenu.WadahMenuActivity"/>
 		<activity android:name=".ui.lainnya.InfoAppActivity"/>
-		<activity android:name=".splashscreen.SplashScreenActivity"/>
+		<activity android:name=".MainActivity"/>
 		<activity android:name=".login.LoginActivity"/>
 		<activity android:name=".login.RegisterActivity"/>
-		<activity android:name=".MainActivity">
+		<activity android:name=".login.LupaSandiActivity"/>
+		<activity android:name=".login.LupaSandiActivity2"/>
+		<activity android:name=".splashscreen.SplashScreenActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN"/>
 				

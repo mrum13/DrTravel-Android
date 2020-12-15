@@ -22,7 +22,7 @@
             android:id="@+id/image_akun"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/ic_profile_rum_round" />
+            android:src="@mipmap/ic_akun" />
 
         <TextView
             android:id="@+id/tv_nama_akun"

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.login.LoginActivity;
 import com.inreadyworkgroup.drtravel_beta.models.User;
 import com.inreadyworkgroup.drtravel_beta.storage.SharedPrefManager;
 
@@ -44,7 +45,11 @@ public class LainnyaFragment extends Fragment {
         btnKeluar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+//                getActivity().finish();
+                SharedPrefManager.getInstance(getActivity()).clear();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
