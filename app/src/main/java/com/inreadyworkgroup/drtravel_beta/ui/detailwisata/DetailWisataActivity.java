@@ -65,7 +65,7 @@ public class DetailWisataActivity extends AppCompatActivity {
             String asal_detail = getIntent().getStringExtra("AsalFoodMasjid");
             String detail = getIntent().getStringExtra("DetailFoodMasjid");
             String kategori = getIntent().getStringExtra("toolbar");
-            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 1);
+            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 0);
 
             setDetail(judul_detail, image_detail, asal_detail, detail, kategori);
         }

@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.inreadyworkgroup.drtravel_beta"
-        minSdkVersion 24
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -47,5 +47,9 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+//    api project(":sceneformux")
+    implementation 'com.google.ar.sceneform:assets:1.15.0'
+
 }
 

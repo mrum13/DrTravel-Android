@@ -151,6 +151,7 @@
     <orderEntry type="library" name="Gradle: com.google.ar.sceneform:core:1.15.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.ar.sceneform:rendering:1.15.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.ar:core:1.15.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.ar.sceneform:assets:1.15.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.ar.sceneform:sceneform-base:1.15.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.ar.sceneform:filament-android:1.15.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />

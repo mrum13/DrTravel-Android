@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.models.User;
+import com.inreadyworkgroup.drtravel_beta.storage.SharedPrefManager;
 
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_nama_edit, et_email_edit;
@@ -28,35 +30,39 @@ public class EditProfileActivity extends AppCompatActivity {
         et_nama_edit = findViewById(R.id.et_editnama_profile);
         et_email_edit = findViewById(R.id.et_editemail_profile);
 
-        et_nama_edit.setOnEditorActionListener(editorListener);
-        et_email_edit.setOnEditorActionListener(editorListener);
+//        User user = SharedPrefManager.getInstance(EditProfileActivity.this).getUser();
+//        et_nama_edit.setText(user.getName());
+//        et_email_edit.setText(user.getEmail());
 
-        getIncomingIntent();
+//        et_nama_edit.setOnEditorActionListener(editorListener);
+//        et_email_edit.setOnEditorActionListener(editorListener);
 
-        Button btn_simpan = findViewById(R.id.btn_simpan_akun);
-        btn_simpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Dialog dialog = new Dialog(EditProfileActivity.this);
-
-                //Memasang Title / Judul pada Custom Dialog
-                dialog.setTitle("Update berhasil");
-
-                //Memasang Desain Layout untuk Custom Dialog
-                dialog.setContentView(R.layout.dialog_simpan_profile);
-
-                //Memasang Listener / Aksi saat tombol OK di Klik
-                TextView DialogButton = dialog.findViewById(R.id.tv_simpan);
-                DialogButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-            }
-        });
+//        getIncomingIntent();
+//
+//        Button btn_simpan = findViewById(R.id.btn_simpan_akun);
+//        btn_simpan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final Dialog dialog = new Dialog(EditProfileActivity.this);
+//
+//                //Memasang Title / Judul pada Custom Dialog
+//                dialog.setTitle("Update berhasil");
+//
+//                //Memasang Desain Layout untuk Custom Dialog
+//                dialog.setContentView(R.layout.dialog_simpan_profile);
+//
+//                //Memasang Listener / Aksi saat tombol OK di Klik
+//                TextView DialogButton = dialog.findViewById(R.id.tv_simpan);
+//                DialogButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                dialog.show();
+//            }
+//        });
     }
 
     private TextView.OnEditorActionListener editorListener = new TextView.OnEditorActionListener() {

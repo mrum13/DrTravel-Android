@@ -12,16 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterWisata extends RecyclerView.Adapter<AdapterWisata.viewHolder> {
     Context context;
-    ArrayList<ViewModelWisata> listWisata;
+    List<Wisata> listWisata;
 
-    public AdapterWisata(Context context, ArrayList<ViewModelWisata> listWisata) {
+    public AdapterWisata(Context context, List<Wisata> listWisata) {
         this.context = context;
         this.listWisata = listWisata;
     }
@@ -35,21 +38,27 @@ public class AdapterWisata extends RecyclerView.Adapter<AdapterWisata.viewHolder
 
     @Override
     public void onBindViewHolder(@NonNull AdapterWisata.viewHolder holder, int position) {
-        final ViewModelWisata DA = listWisata.get(position);
+        final Wisata DA = listWisata.get(position);
 
-        holder.txt.setText(DA.getJudulWisata());
+        holder.txt.setText(DA.getNama_tempat());
 
-        Glide.with(context).load( DA.getGambarWisata()).into(holder.img);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.mipmap.ic_launcher_round);
+
+        Glide.with(context).load( DA.getGambar()).apply(options).into(holder.img);
+//        Glide.with(context).load( "https://www.pantaipedia.com/wp-content/uploads/2019/02/Pantai-Losari.jpg").apply(options).into(holder.img);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent kedetail = new Intent(context, DetailWisataActivity.class);
 
-                kedetail.putExtra("JudulFoodMasjid", DA.getJudulWisata());
-                kedetail.putExtra("GambarFoodMasjid", DA.getGambarWisata());
-                kedetail.putExtra("AsalFoodMasjid", DA.getAsalWisata());
-                kedetail.putExtra("DetailFoodMasjid", DA.getDetailWisata());
+                kedetail.putExtra("JudulFoodMasjid", DA.getNama_tempat());
+                kedetail.putExtra("GambarFoodMasjid", DA.getGambar());
+                kedetail.putExtra("AsalFoodMasjid", DA.getLokasi_tempat());
+                kedetail.putExtra("DetailFoodMasjid", DA.getDeskripsi());
                 kedetail.putExtra("toolbar", "Wisata Menarik");
 
                 context.startActivity(kedetail);

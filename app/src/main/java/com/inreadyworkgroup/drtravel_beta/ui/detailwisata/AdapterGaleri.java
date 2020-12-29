@@ -32,6 +32,7 @@ public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder
     public AdapterGaleri.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_galeri,parent,false);
         return new ViewHolder(view);
+
     }
 
     @Override

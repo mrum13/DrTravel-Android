@@ -13,14 +13,25 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
+import com.inreadyworkgroup.drtravel_beta.models.Wisata;
+import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
 import com.inreadyworkgroup.drtravel_beta.ui.home.pencarian.PencarianActivity;
+import com.inreadyworkgroup.drtravel_beta.ui.wisata.AdapterWisataBanyak;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
     private RecyclerView rvWisata;
     private RecyclerView rvSubmenu;
-    private ArrayList<ViewModelWisata> listData = new ArrayList<ViewModelWisata>();
+//    private ArrayList<ViewModelWisata> listData = new ArrayList<ViewModelWisata>();
+    private List<Wisata> listWisata;
+
     private ArrayList<ViewModelSubMenu> listSubMenu = new ArrayList<ViewModelSubMenu>();
     private LinearLayoutManager linearLayout,linearLayoutsubmenu;
     private EditText et_search;
@@ -38,7 +49,7 @@ public class HomeFragment extends Fragment {
         rvSubmenu.setHasFixedSize(true);
 
         listSubMenu.addAll(DataSubMenu.getListData());
-        listData.addAll(DataWisata.getListData());
+//        listData.addAll(DataWisata.getListData());
 
         linearLayout = new LinearLayoutManager(getActivity());
         linearLayoutsubmenu = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
@@ -46,10 +57,33 @@ public class HomeFragment extends Fragment {
         rvSubmenu.setLayoutManager(linearLayoutsubmenu);
         rvWisata.setLayoutManager(linearLayout);
 
-        AdapterWisata adapterWisata = new AdapterWisata(getContext(), listData);
+//        AdapterWisata adapterWisata = new AdapterWisata(getContext(), listData);
         AdapterSubMenu adapterSubMenu = new AdapterSubMenu(getContext(), listSubMenu);
         rvSubmenu.setAdapter(adapterSubMenu);
-        rvWisata.setAdapter(adapterWisata);
+//        rvWisata.setAdapter(adapterWisata);
+
+        Call<WisataResponse> call = RetrofitClient.getInstance().getApi().getPopulerWisata();
+        call.enqueue(new Callback<WisataResponse>() {
+            @Override
+            public void onResponse(Call<WisataResponse> call, Response<WisataResponse> response) {
+
+                listWisata = response.body().getWisata();
+                AdapterWisata adapter = new AdapterWisata(getActivity(), listWisata);
+                rvWisata.setAdapter(adapter);
+
+//                if (listWisata==null){
+//                    System.out.println("data tidak ada");
+//                }
+//                else {
+//                }
+
+            }
+
+            @Override
+            public void onFailure(Call<WisataResponse> call, Throwable t) {
+
+            }
+        });
 
 
         et_search.setOnClickListener(new View.OnClickListener() {
