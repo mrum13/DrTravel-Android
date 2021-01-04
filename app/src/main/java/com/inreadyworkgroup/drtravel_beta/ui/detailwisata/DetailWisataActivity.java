@@ -11,23 +11,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
+import com.inreadyworkgroup.drtravel_beta.models.Wisata;
+import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
+import com.inreadyworkgroup.drtravel_beta.ui.home.AdapterWisata;
 import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.adaptermenu.AdapterMenuAtas;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.DataMenuAtas;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.Datamenubawah;
+import com.inreadyworkgroup.drtravel_beta.ui.home.pencarian.PencarianActivity;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailWisataActivity extends AppCompatActivity {
     ImageView btnBack,imgDetailAtas;
     TextView tvJudulDetail,tvAsalDetail,tvIsiDetail,tvToolbar;
     RecyclerView rvGalleri;
     private ArrayList<ViewModelGaleri> listData = new ArrayList<ViewModelGaleri>();
-
-
+    private Wisata[] detailWisata;
+    private List<Wisata> listWisata;
+    private String wisata;
+    private int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,45 +74,48 @@ public class DetailWisataActivity extends AppCompatActivity {
     }
 
     private void getIncomingIntent(){
-        if(getIntent().hasExtra("JudulFoodMasjid") && getIntent().hasExtra("GambarFoodMasjid") && getIntent().hasExtra("AsalFoodMasjid") && getIntent().hasExtra("DetailFoodMasjid") && getIntent().hasExtra("toolbar")) {
-            String judul_detail = getIntent().getStringExtra("JudulFoodMasjid");
-            String asal_detail = getIntent().getStringExtra("AsalFoodMasjid");
-            String detail = getIntent().getStringExtra("DetailFoodMasjid");
+        if(getIntent().hasExtra("JudulFoodMasjid") && getIntent().hasExtra("toolbar")) {
+            wisata = getIntent().getStringExtra("JudulFoodMasjid");
             String kategori = getIntent().getStringExtra("toolbar");
-            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 0);
+//            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 0);
 
-            setDetail(judul_detail, image_detail, asal_detail, detail, kategori);
+            setDetail(wisata,kategori);
         }
     }
 
-    private void setDetail(String judul_detail, int image_detail, String asal_detail, String isi_detail, String kategori){
-        tvJudulDetail.setText(judul_detail);
-        tvAsalDetail.setText(asal_detail);
-        tvIsiDetail.setText(isi_detail);
+    private void setDetail(String nama_wisata, String kategori){
         tvToolbar.setText(kategori);
 
-        if (judul_detail.equals("Pantai Losari")){
-            listData.addAll(DataGaleri.getListDataGaleriPanlos());
-        }
-        else if (judul_detail.equals("Benteng Rotterdam")){
-            listData.addAll(DataGaleri.getListDataGaleriBenteng());
-        }
-        else if (judul_detail.equals("Paduppa Resort")){
-            listData.addAll(DataGaleri.getListDataGaleriPaduppa());
-        }
-        else if (judul_detail.equals("Permata Indah")){
-            listData.addAll(DataGaleri.getListDataGaleriPermata());
-        }
-        if (judul_detail.equals("Pondok Lembah Biru")){
-            listData.addAll(DataGaleri.getListDataGaleriPondok());
-        }
-        else if (judul_detail.equals("Hotel Pantai Gapura")){
-            listData.addAll(DataGaleri.getListDataGaleriGapura());
-        }
+        Call<WisataResponse> call = RetrofitClient.getInstance().getApi().detailWisata(nama_wisata);
+        call.enqueue(new Callback<WisataResponse>() {
+            @Override
+            public void onResponse(Call<WisataResponse> call, Response<WisataResponse> response) {
+                WisataResponse wisataResponse =response.body();
+                if (!wisataResponse.isError()){
+                    listWisata = response.body().getWisata();
+                    detailWisata = listWisata.toArray(new Wisata[0]);
+                    tvJudulDetail.setText(detailWisata[0].getNama_tempat());
+                    tvAsalDetail.setText(detailWisata[0].getLokasi_tempat());
+                    tvIsiDetail.setText(detailWisata[0].getDeskripsi());
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.mipmap.ic_launcher_round)
+                            .error(R.mipmap.ic_launcher_round);
 
-        Glide.with(this)
-                .asBitmap()
-                .load(image_detail)
-                .into(imgDetailAtas);
+                    Glide.with(DetailWisataActivity.this).load(detailWisata[0].getGambar()).apply(options).into(imgDetailAtas);
+
+                }
+                else {
+                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<WisataResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

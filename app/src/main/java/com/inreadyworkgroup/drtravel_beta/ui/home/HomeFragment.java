@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
@@ -36,12 +38,19 @@ public class HomeFragment extends Fragment {
     private LinearLayoutManager linearLayout,linearLayoutsubmenu;
     private EditText et_search;
 
+    ShimmerFrameLayout shimmer1;
+    View view1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         et_search = root.findViewById(R.id.et_tabSearch);
+        view1=(View)root.findViewById(R.id.view1);
+
+        shimmer1= (ShimmerFrameLayout) root.findViewById(R.id.shimmer_view_container1);
+        shimmer1.startShimmer(); //start Shimmer animation of shimmer
 
         rvWisata = (RecyclerView)root.findViewById(R.id.rv_wisata_menarik);
         rvWisata.setHasFixedSize(true);
@@ -69,6 +78,8 @@ public class HomeFragment extends Fragment {
 
                 listWisata = response.body().getWisata();
                 AdapterWisata adapter = new AdapterWisata(getActivity(), listWisata);
+                shimmer1.stopShimmer();
+                view1.setVisibility(View.GONE);
                 rvWisata.setAdapter(adapter);
 
 //                if (listWisata==null){

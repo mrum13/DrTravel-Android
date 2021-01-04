@@ -56,9 +56,9 @@ public class AdapterWisata extends RecyclerView.Adapter<AdapterWisata.viewHolder
                 Intent kedetail = new Intent(context, DetailWisataActivity.class);
 
                 kedetail.putExtra("JudulFoodMasjid", DA.getNama_tempat());
-                kedetail.putExtra("GambarFoodMasjid", DA.getGambar());
-                kedetail.putExtra("AsalFoodMasjid", DA.getLokasi_tempat());
-                kedetail.putExtra("DetailFoodMasjid", DA.getDeskripsi());
+//                kedetail.putExtra("GambarFoodMasjid", DA.getGambar());
+//                kedetail.putExtra("AsalFoodMasjid", DA.getLokasi_tempat());
+//                kedetail.putExtra("DetailFoodMasjid", DA.getDeskripsi());
                 kedetail.putExtra("toolbar", "Wisata Menarik");
 
                 context.startActivity(kedetail);

@@ -10,6 +10,41 @@
         layout="@layout/toolbar_filter"
         android:id="@+id/toolbar_list_wisata"/>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_list_wisata"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/shimmer_wisata1">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:background="#8A8888"
+            android:layout_gravity="center"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar_list_wisata"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/shimmer_wisata2"
+        android:layout_toRightOf="@id/shimmer_wisata1">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:background="#8A8888"
+            android:layout_gravity="center"/>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_wisata"
         android:layout_width="match_parent"

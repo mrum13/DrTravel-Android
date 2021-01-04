@@ -37,4 +37,10 @@ public interface Api {
     Call<WisataResponse> searchWisata(
             @Field("nama_tempat") String nama_tempat
     );
+
+    @FormUrlEncoded
+    @POST("detailWisata")
+    Call<WisataResponse> detailWisata(
+            @Field("nama_tempat") String nama_wisata
+    );
 }

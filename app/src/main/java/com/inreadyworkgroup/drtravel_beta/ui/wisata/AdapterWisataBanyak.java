@@ -85,7 +85,7 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
             imgWisata = itemView.findViewById(R.id.img_item_wisata);
             cbSelect = itemView.findViewById(R.id.cb_favorit);
 
-            itemView.setOnClickListener(this);
+            cbSelect.setOnClickListener(this);
 
         }
 
@@ -106,13 +106,11 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
             if (list.get(adapterPosition).isChecked()) {
                 cbSelect.setChecked(false);
                 list.get(adapterPosition).setChecked(false);
-                list.get(adapterPosition).setStatus(0);
             }
             else {
                 cbSelect.setChecked(true);
                 list.get(adapterPosition).setChecked(true);
-                Toast.makeText(context, list.get(adapterPosition).getNama_tempat(),Toast.LENGTH_LONG).show();
-                list.get(adapterPosition).setStatus(1);
+
             }
         }
     }
