@@ -10,15 +10,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
+import com.inreadyworkgroup.drtravel_beta.models.KulinerResponseAtas;
+import com.inreadyworkgroup.drtravel_beta.models.KulinerResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.MasjidResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuAtas;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
+import com.inreadyworkgroup.drtravel_beta.models.Wisata;
+import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
+import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DetailFoodMasjidActivity extends AppCompatActivity {
-    ImageView gambarDetail,kembali;
-    TextView tvJudulDetail,tvAsalDetail,tvDetail,toolbarTa;
-    String aksesMaps;
-    Button btn_cari;
+    private ImageView gambarDetail,kembali;
+    private TextView tvJudulDetail,tvAsalDetail,tvDetail,toolbarTa;
+    private String aksesMaps;
+    private Button btn_cari;
+    private String judul_detail;
+    private String kategori;
+    private ViewModelMenuBawah[] detailFoodMasjid;
+    private List<ViewModelMenuBawah> listFoodMasjid;
+    private ViewModelMenuAtas[] detailFoodMasjidFav;
+    private List<ViewModelMenuAtas> listFoodMasjidFav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,47 +68,135 @@ public class DetailFoodMasjidActivity extends AppCompatActivity {
     }
 
     private void getIncomingIntent(){
-        if(getIntent().hasExtra("JudulFoodMasjid") && getIntent().hasExtra("GambarFoodMasjid") && getIntent().hasExtra("AsalFoodMasjid") && getIntent().hasExtra("DetailFoodMasjid") && getIntent().hasExtra("toolbar")) {
-            String judul_detail = getIntent().getStringExtra("JudulFoodMasjid");
-            String asal_detail = getIntent().getStringExtra("AsalFoodMasjid");
-            String detail = getIntent().getStringExtra("DetailFoodMasjid");
-            String kategori = getIntent().getStringExtra("toolbar");
-            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 1);
+        if(getIntent().hasExtra("JudulFoodMasjid") && getIntent().hasExtra("toolbar")) {
+            judul_detail = getIntent().getStringExtra("JudulFoodMasjid");
+            kategori = getIntent().getStringExtra("toolbar");
 
-            setDetail(judul_detail, image_detail, asal_detail, detail, kategori);
+            setDetail(judul_detail,kategori);
         }
     }
 
-    private void setDetail(String judul_detail, int image_detail, String asal_detail, String isi_detail, String kategori){
-        tvJudulDetail.setText(judul_detail);
-        tvAsalDetail.setText(asal_detail);
-        tvDetail.setText(isi_detail);
+    private void setDetail(String judul_detailfoodmasjid, String kategori) {
+        tvJudulDetail.setText(judul_detailfoodmasjid);
         toolbarTa.setText(kategori);
 
         aksesMaps = judul_detail;
 
-        if (kategori.equals("Kuliner")){
+        if (kategori.equals("Kuliner")) {
             btn_cari.setText("Cari Makanan");
-        }
-        else if (kategori.equals("Masjid")){
+            dataFoodBawah();
+        } else if (kategori.equals("Masjid")) {
             btn_cari.setText("Lokasi Masjid");
+            dataMasjidBawah();
         }
 
         btn_cari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+aksesMaps);
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + aksesMaps);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
             }
         });
-
-
-
-        Glide.with(this)
-                .asBitmap()
-                .load(image_detail)
-                .into(gambarDetail);
     }
+
+    //detail food bawah
+    private void dataFoodBawah(){
+        Call<KulinerResponseBawah> call = RetrofitClient.getInstance().getApi().detailKulinerBawah(judul_detail);
+        call.enqueue(new Callback<KulinerResponseBawah>() {
+            @Override
+            public void onResponse(Call<KulinerResponseBawah> call, Response<KulinerResponseBawah> response) {
+                KulinerResponseBawah kulinerResponseBawah =response.body();
+                if (!kulinerResponseBawah.isError()){
+                    listFoodMasjid = response.body().getKuliner();
+                    detailFoodMasjid = listFoodMasjid.toArray(new ViewModelMenuBawah[0]);
+                    tvJudulDetail.setText(detailFoodMasjid[0].getTvMenuBawah());
+                    tvAsalDetail.setText(detailFoodMasjid[0].getAsalMenuBawah());
+                    tvDetail.setText(detailFoodMasjid[0].getDetailMenuBawah());
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.mipmap.ic_launcher_round)
+                            .error(R.mipmap.ic_launcher_round);
+//                    shimmerDetail.stopShimmer();
+//                    viewDetail.setVisibility(View.GONE);
+                    Glide.with(DetailFoodMasjidActivity.this).load(detailFoodMasjid[0].getGambarMenuBawah()).apply(options).into(gambarDetail);
+
+                }
+                else {
+                    Toast.makeText(DetailFoodMasjidActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<KulinerResponseBawah> call, Throwable t) {
+            }
+        });
+    }
+
+    //detail masjid bawah
+    private void dataMasjidBawah(){
+        Call<MasjidResponseBawah> call = RetrofitClient.getInstance().getApi().detailMasjidBawah(judul_detail);
+        call.enqueue(new Callback<MasjidResponseBawah>() {
+            @Override
+            public void onResponse(Call<MasjidResponseBawah> call, Response<MasjidResponseBawah> response) {
+                MasjidResponseBawah masjidResponseBawah =response.body();
+                if (!masjidResponseBawah.isError()){
+                    listFoodMasjid = response.body().getMasjid();
+                    detailFoodMasjid = listFoodMasjid.toArray(new ViewModelMenuBawah[0]);
+                    tvJudulDetail.setText(detailFoodMasjid[0].getTvMenuBawah());
+                    tvAsalDetail.setText(detailFoodMasjid[0].getAsalMenuBawah());
+                    tvDetail.setText(detailFoodMasjid[0].getDetailMenuBawah());
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.mipmap.ic_launcher_round)
+                            .error(R.mipmap.ic_launcher_round);
+//                    shimmerDetail.stopShimmer();
+//                    viewDetail.setVisibility(View.GONE);
+                    Glide.with(DetailFoodMasjidActivity.this).load(detailFoodMasjid[0].getGambarMenuBawah()).apply(options).into(gambarDetail);
+
+                }
+                else {
+                    Toast.makeText(DetailFoodMasjidActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MasjidResponseBawah> call, Throwable t) {
+            }
+        });
+    }
+
+    //datafoodAtas
+//    private void dataFoodAtas(){
+//        Call<KulinerResponseAtas> call = RetrofitClient.getInstance().getApi().detailKulinerAtas(judul_detail);
+//        call.enqueue(new Callback<KulinerResponseAtas>() {
+//            @Override
+//            public void onResponse(Call<KulinerResponseAtas> call, Response<KulinerResponseAtas> response) {
+//                KulinerResponseAtas kulinerResponseAtas =response.body();
+//                if (!kulinerResponseAtas.isError()){
+//                    listFoodMasjidFav = response.body().getKuliner();
+//                    detailFoodMasjidFav = listFoodMasjidFav.toArray(new ViewModelMenuAtas[0]);
+//                    tvJudulDetail.setText(detailFoodMasjidFav[0].getTvMenuAtas());
+//                    tvAsalDetail.setText(detailFoodMasjidFav[0].getAsalMenuAtas());
+//                    tvDetail.setText(detailFoodMasjidFav[0].getDetailMenuAtas());
+//                    RequestOptions options = new RequestOptions()
+//                            .centerCrop()
+//                            .placeholder(R.mipmap.ic_launcher_round)
+//                            .error(R.mipmap.ic_launcher_round);
+////                    shimmerDetail.stopShimmer();
+////                    viewDetail.setVisibility(View.GONE);
+//                    Glide.with(DetailFoodMasjidActivity.this).load(detailFoodMasjidFav[0].getGambarMenuAtas()).apply(options).into(gambarDetail);
+//
+//                }
+//                else {
+//                    Toast.makeText(DetailFoodMasjidActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<KulinerResponseAtas> call, Throwable t) {
+//            }
+//        });
+//    }
 }

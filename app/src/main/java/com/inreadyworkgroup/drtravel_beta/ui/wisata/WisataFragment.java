@@ -4,26 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
-import com.inreadyworkgroup.drtravel_beta.ui.home.DataSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -61,7 +54,6 @@ public class WisataFragment extends Fragment {
 
         rvGrid.setLayoutManager(new GridLayoutManager(getContext(), 2));
         Call<WisataResponse> call = RetrofitClient.getInstance().getApi().getAllWisata();
-
         call.enqueue(new Callback<WisataResponse>() {
             @Override
             public void onResponse(Call<WisataResponse> call, Response<WisataResponse> response) {
@@ -73,13 +65,6 @@ public class WisataFragment extends Fragment {
                 shimmer2.stopShimmer();
                 view2.setVisibility(View.GONE);
                 rvGrid.setAdapter(adapter);
-
-//                if (listWisata==null){
-//                    System.out.println("data tidak ada");
-//                }
-//                else {
-//                }
-
             }
 
             @Override

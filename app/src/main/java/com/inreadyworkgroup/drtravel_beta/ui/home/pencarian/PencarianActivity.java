@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.inreadyworkgroup.drtravel_beta.MainActivity;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
@@ -36,6 +37,8 @@ public class PencarianActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayout;
     private String wisata;
     private EditText et_cari;
+//    private ShimmerFrameLayout shimmerPencarian;
+//    private View viewPencarian;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,7 @@ public class PencarianActivity extends AppCompatActivity {
 
         ImageView ic_hapus = findViewById(R.id.clear_text_cari);
         et_cari = findViewById(R.id.et_cari_wisata);
-
+        et_cari.requestFocus();
         et_cari.setOnEditorActionListener(editorListener);
 
         ic_hapus.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +57,10 @@ public class PencarianActivity extends AppCompatActivity {
             }
         });
 
+//        viewPencarian=(View)findViewById(R.id.view_pencarian);
+//
+//        shimmerPencarian= (ShimmerFrameLayout)findViewById(R.id.shimmer_pencarian);
+//        shimmerPencarian.stopShimmer();
     }
 
     private TextView.OnEditorActionListener editorListener = new TextView.OnEditorActionListener() {
@@ -62,7 +69,9 @@ public class PencarianActivity extends AppCompatActivity {
             switch (actionId) {
                 case EditorInfo.IME_ACTION_SEND:
                     Toast.makeText(PencarianActivity.this, "Mencari", Toast.LENGTH_SHORT).show();
+//                    shimmerPencarian.startShimmer(); //start Shimmer animation of shimmer
                     break;
+
             }
 
             wisata = et_cari.getText().toString().trim();
@@ -83,6 +92,8 @@ public class PencarianActivity extends AppCompatActivity {
                         listWisataResult = response.body().getWisata();
                         if (!listWisataResult.isEmpty()){
                             AdapterWisata adapter = new AdapterWisata(PencarianActivity.this, listWisataResult);
+//                            shimmerPencarian.stopShimmer();
+//                            viewPencarian.setVisibility(View.GONE);
                             rvResultWisata.setAdapter(adapter);
                         }
                         else {

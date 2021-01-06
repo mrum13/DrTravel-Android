@@ -8,21 +8,16 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.chip.ChipGroup;
 import com.inreadyworkgroup.drtravel_beta.R;
-import com.inreadyworkgroup.drtravel_beta.login.LoginActivity;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
+import com.inreadyworkgroup.drtravel_beta.storage.DbHelper;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
-import com.inreadyworkgroup.drtravel_beta.ui.home.AdapterWisata;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanyak.ViewHolder> {
@@ -50,22 +45,32 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
 
         Glide.with(context).load( wisata.getGambar()).into(holder.imgWisata);
 
-//        holder.imgWisata.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent kedetail = new Intent(context, DetailWisataActivity.class);
-//
-//                kedetail.putExtra("JudulFoodMasjid", wisata.getNama_tempat());
-//                kedetail.putExtra("GambarFoodMasjid", DA.getGambarWisata());
-//                kedetail.putExtra("AsalFoodMasjid", DA.getAsalWisata());
-//                kedetail.putExtra("DetailFoodMasjid", DA.getDetailWisata());
-//                kedetail.putExtra("toolbar", "Wisata Menarik");
-//
-//                context.startActivity(kedetail);
-//            }
-//        });
-
         holder.bind(position);
+        holder.cbSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (list.get(position).isChecked()) {
+                    holder.cbSelect.setChecked(false);
+                    list.get(position).setChecked(false);
+                    
+                }
+                else {
+                    holder.cbSelect.setChecked(true);
+                    list.get(position).setChecked(true);
+                }
+            }
+        });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent kedetail = new Intent(context, DetailWisataActivity.class);
+                kedetail.putExtra("JudulFoodMasjid", wisata.getNama_tempat());
+                kedetail.putExtra("toolbar", "Wisata Menarik");
+
+                context.startActivity(kedetail);
+            }
+        });
     }
 
     @Override
@@ -77,6 +82,7 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
         ImageView imgWisata;
         TextView tvWisata;
         CheckBox cbSelect;
+        DbHelper DB;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -85,7 +91,7 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
             imgWisata = itemView.findViewById(R.id.img_item_wisata);
             cbSelect = itemView.findViewById(R.id.cb_favorit);
 
-            cbSelect.setOnClickListener(this);
+//            cbSelect.setOnClickListener(this);
 
         }
 
@@ -102,16 +108,7 @@ public class AdapterWisataBanyak extends RecyclerView.Adapter<AdapterWisataBanya
 
         @Override
         public void onClick(View view) {
-            int adapterPosition = getAdapterPosition();
-            if (list.get(adapterPosition).isChecked()) {
-                cbSelect.setChecked(false);
-                list.get(adapterPosition).setChecked(false);
-            }
-            else {
-                cbSelect.setChecked(true);
-                list.get(adapterPosition).setChecked(true);
 
-            }
         }
     }
 }

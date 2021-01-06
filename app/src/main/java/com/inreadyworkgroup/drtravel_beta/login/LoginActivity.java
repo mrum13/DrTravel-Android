@@ -89,7 +89,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         Call<LoginResponse> call =RetrofitClient.getInstance().getApi().userLogin(email,password);
-
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {

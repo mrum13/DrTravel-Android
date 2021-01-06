@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
     private static final String AUTH = "Basic "+ android.util.Base64.encodeToString(("drtravel:123456").getBytes(), Base64.NO_WRAP);
-    private static final String BASE_URL="http://64c34abcd085.ngrok.io/DrTravelApi/public/";
+    private static final String BASE_URL="http://5e9f7c2fe06f.ngrok.io/DrTravelApi/public/";
     private static  RetrofitClient mInstance;
     private Retrofit retrofit;
 

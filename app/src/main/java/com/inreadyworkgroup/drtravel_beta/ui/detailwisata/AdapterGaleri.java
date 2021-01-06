@@ -1,7 +1,6 @@
 package com.inreadyworkgroup.drtravel_beta.ui.detailwisata;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.inreadyworkgroup.drtravel_beta.R;
-import com.inreadyworkgroup.drtravel_beta.ui.home.AdapterSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
 
 import java.util.ArrayList;
 

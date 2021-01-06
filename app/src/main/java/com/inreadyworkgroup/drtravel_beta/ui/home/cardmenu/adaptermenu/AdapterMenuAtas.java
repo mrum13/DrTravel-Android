@@ -1,6 +1,5 @@
 package com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.adaptermenu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,27 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuAtas;
 import com.inreadyworkgroup.drtravel_beta.ui.detailfoodmasjid.DetailFoodMasjidActivity;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
-import com.inreadyworkgroup.drtravel_beta.ui.home.AdapterSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelSubMenu;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.viewmodelmenu.ViewModelMenuAtas;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterMenuAtas extends RecyclerView.Adapter<AdapterMenuAtas.ViewHolder> {
-    Context context;
-    ArrayList<ViewModelMenuAtas> list;
+    private List<ViewModelMenuAtas> list;
     String kategori;
 
-    public AdapterMenuAtas(Context context, ArrayList<ViewModelMenuAtas> list, String kategori) {
-        this.context = context;
+    public AdapterMenuAtas(List<ViewModelMenuAtas> list, String kategori) {
         this.list = list;
         this.kategori = kategori;
     }
-
 
     @NonNull
     @Override
@@ -47,29 +39,26 @@ public class AdapterMenuAtas extends RecyclerView.Adapter<AdapterMenuAtas.ViewHo
         final ViewModelMenuAtas data = list.get(position);
 
         holder.tvAtas.setText(data.getTvMenuAtas());
-        Glide.with(context).load(data.getGambarMenuAtas()).into(holder.gambarAtas);
+        Glide.with(holder.itemView.getContext()).load(data.getGambarMenuAtas()).into(holder.gambarAtas);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent kedetail = null;
                 if (kategori.equals("Kuliner")){
-                    kedetail = new Intent(context, DetailFoodMasjidActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailFoodMasjidActivity.class);
                 }
                 else if (kategori.equals("Masjid")){
-                    kedetail = new Intent(context, DetailFoodMasjidActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailFoodMasjidActivity.class);
                 }
                 else if (kategori.equals("Penginapan")){
-                    kedetail = new Intent(context, DetailWisataActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailWisataActivity.class);
                 }
 
                 kedetail.putExtra("JudulFoodMasjid", data.getTvMenuAtas());
-                kedetail.putExtra("GambarFoodMasjid", data.getGambarMenuAtas());
-                kedetail.putExtra("AsalFoodMasjid", data.getAsalMenuAtas());
-                kedetail.putExtra("DetailFoodMasjid", data.getDetailMenuAtas());
                 kedetail.putExtra("toolbar", kategori);
 
-                context.startActivity(kedetail);
+                holder.itemView.getContext().startActivity(kedetail);
             }
         });
     }

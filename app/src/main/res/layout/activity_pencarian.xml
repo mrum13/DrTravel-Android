@@ -36,6 +36,22 @@
 
     </RelativeLayout>
 
+<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="20dp"-->
+<!--        android:layout_below="@id/layout_cari"-->
+<!--        android:id="@+id/shimmer_pencarian">-->
+
+<!--        <View-->
+<!--            android:id="@+id/view_pencarian"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="185dp"-->
+<!--            android:background="#8A8888"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--    </com.facebook.shimmer.ShimmerFrameLayout>-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cari"
         android:layout_width="match_parent"

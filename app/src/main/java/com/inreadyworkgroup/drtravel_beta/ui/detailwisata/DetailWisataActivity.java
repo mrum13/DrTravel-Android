@@ -2,11 +2,8 @@ package com.inreadyworkgroup.drtravel_beta.ui.detailwisata;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,16 +12,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
+import com.inreadyworkgroup.drtravel_beta.models.MasjidResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseAtas;
+import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
-import com.inreadyworkgroup.drtravel_beta.ui.home.AdapterWisata;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.adaptermenu.AdapterMenuAtas;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.DataMenuAtas;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.Datamenubawah;
-import com.inreadyworkgroup.drtravel_beta.ui.home.pencarian.PencarianActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,8 +36,11 @@ public class DetailWisataActivity extends AppCompatActivity {
     private ArrayList<ViewModelGaleri> listData = new ArrayList<ViewModelGaleri>();
     private Wisata[] detailWisata;
     private List<Wisata> listWisata;
+    private ViewModelMenuBawah[] detailPenginapan;
+    private List<ViewModelMenuBawah> listPenginapan;
     private String wisata;
-    private int i;
+    ShimmerFrameLayout shimmerDetail;
+    View viewDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +53,10 @@ public class DetailWisataActivity extends AppCompatActivity {
         tvAsalDetail = findViewById(R.id.tv_subjudul_detail_wisata);
         tvIsiDetail = findViewById(R.id.tv_isi_detail_wisata);
         tvToolbar = findViewById(R.id.tv_kembali);
+        viewDetail=(View)findViewById(R.id.view_detail);
+
+        shimmerDetail= (ShimmerFrameLayout)findViewById(R.id.shimmer_detail);
+        shimmerDetail.startShimmer(); //start Shimmer animation of shimmer
 
         rvGalleri = findViewById(R.id.rv_galeri_wisata_detail);
 
@@ -85,8 +88,17 @@ public class DetailWisataActivity extends AppCompatActivity {
 
     private void setDetail(String nama_wisata, String kategori){
         tvToolbar.setText(kategori);
+//        tvJudulDetail.setText(nama_wisata);
 
-        Call<WisataResponse> call = RetrofitClient.getInstance().getApi().detailWisata(nama_wisata);
+        if (kategori.equals("Penginapan")) {
+            dataPenginapanBawah();
+        } else  {
+            dataWisata();
+        }
+    }
+
+    private void dataWisata(){
+        Call<WisataResponse> call = RetrofitClient.getInstance().getApi().detailWisata(wisata);
         call.enqueue(new Callback<WisataResponse>() {
             @Override
             public void onResponse(Call<WisataResponse> call, Response<WisataResponse> response) {
@@ -101,7 +113,8 @@ public class DetailWisataActivity extends AppCompatActivity {
                             .centerCrop()
                             .placeholder(R.mipmap.ic_launcher_round)
                             .error(R.mipmap.ic_launcher_round);
-
+                    shimmerDetail.stopShimmer();
+                    viewDetail.setVisibility(View.GONE);
                     Glide.with(DetailWisataActivity.this).load(detailWisata[0].getGambar()).apply(options).into(imgDetailAtas);
 
                 }
@@ -114,6 +127,39 @@ public class DetailWisataActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<WisataResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void dataPenginapanBawah(){
+        Call<PenginapanResponseBawah> call = RetrofitClient.getInstance().getApi().detailPenginapanBawah(wisata);
+        call.enqueue(new Callback<PenginapanResponseBawah>() {
+            @Override
+            public void onResponse(Call<PenginapanResponseBawah> call, Response<PenginapanResponseBawah> response) {
+                PenginapanResponseBawah penginapanResponseBawah =response.body();
+                if (!penginapanResponseBawah.isError()){
+                    listPenginapan = response.body().getPenginapan();
+                    detailPenginapan = listPenginapan.toArray(new ViewModelMenuBawah[0]);
+                    tvJudulDetail.setText(detailPenginapan[0].getTvMenuBawah());
+                    tvAsalDetail.setText(detailPenginapan[0].getAsalMenuBawah());
+                    tvIsiDetail.setText(detailPenginapan[0].getDetailMenuBawah());
+                    RequestOptions options = new RequestOptions()
+                            .centerCrop()
+                            .placeholder(R.mipmap.ic_launcher_round)
+                            .error(R.mipmap.ic_launcher_round);
+                    shimmerDetail.stopShimmer();
+                    viewDetail.setVisibility(View.GONE);
+                    Glide.with(DetailWisataActivity.this).load(detailPenginapan[0].getGambarMenuBawah()).apply(options).into(imgDetailAtas);
+
+                }
+                else {
+                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PenginapanResponseBawah> call, Throwable t) {
 
             }
         });

@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
-import com.inreadyworkgroup.drtravel_beta.ui.wisata.AdapterWisataBanyak;
 
 import java.util.ArrayList;
 

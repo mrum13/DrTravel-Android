@@ -3,7 +3,6 @@ package com.inreadyworkgroup.drtravel_beta.ui.penanda;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,10 +12,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.inreadyworkgroup.drtravel_beta.R;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
-import com.inreadyworkgroup.drtravel_beta.ui.wisata.AdapterWisataBanyak;
-import com.inreadyworkgroup.drtravel_beta.ui.wisata.DataWisataBanyak;
-import com.inreadyworkgroup.drtravel_beta.ui.wisata.ViewModelWisataBanyak;
 
 import java.util.ArrayList;
 

@@ -20,13 +20,28 @@
             android:layout_height="match_parent"
             android:paddingBottom="20dp">
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="185dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:id="@+id/shimmer_detail">
+
+                <View
+                    android:id="@+id/view_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:background="#8A8888"
+                    android:layout_gravity="center"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <ImageView
                 android:id="@+id/img_detail_wisata"
                 android:layout_width="match_parent"
                 android:layout_height="185dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/gambar_benteng"
                 android:scaleType="fitXY"/>
 
             <TextView
@@ -37,7 +52,7 @@
                 android:layout_below="@id/img_detail_wisata"
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="20dp"
-                android:text="Benteng Rotterdam"/>
+                android:text="Nama tempat"/>
 
             <TextView
                 android:id="@+id/tv_subjudul_detail_wisata"
@@ -47,7 +62,7 @@
                 android:layout_below="@id/tv_judul_detail_wisata"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:text="Makassar, Sulawesi Selatan"/>
+                android:text="Lokasi Tempat"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_btn_VR"
@@ -92,7 +107,7 @@
                 android:layout_below="@id/tv_subjudul_detail_wisata"
                 android:layout_marginTop="24dp"
                 android:layout_marginHorizontal="20dp"
-                android:text="Makassar, Sulawesi Selatan"/>
+                android:text="deskripsi"/>
 
             <TextView
                 android:id="@+id/tv_galleri_detail_wisata"

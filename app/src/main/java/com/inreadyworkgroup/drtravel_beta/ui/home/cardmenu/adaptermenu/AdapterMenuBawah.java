@@ -16,19 +16,16 @@ import com.bumptech.glide.request.RequestOptions;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.ui.detailfoodmasjid.DetailFoodMasjidActivity;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.viewmodelmenu.ViewModelMenuBawah;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
+import java.util.List;
 
 public class AdapterMenuBawah extends RecyclerView.Adapter<AdapterMenuBawah.ViewHolder> {
-    Context context;
-    ArrayList<ViewModelMenuBawah> list;
+    private final List<ViewModelMenuBawah> listBawah;
     String kategori;
 
-    public AdapterMenuBawah(Context context, ArrayList<ViewModelMenuBawah> list, String kategori) {
-        this.context = context;
-        this.list = list;
+    public AdapterMenuBawah(List<ViewModelMenuBawah> listBawah, String kategori) {
+        this.listBawah = listBawah;
         this.kategori = kategori;
     }
 
@@ -41,7 +38,7 @@ public class AdapterMenuBawah extends RecyclerView.Adapter<AdapterMenuBawah.View
 
     @Override
     public void onBindViewHolder(@NonNull AdapterMenuBawah.ViewHolder holder, int position) {
-        final ViewModelMenuBawah data = list.get(position);
+        final ViewModelMenuBawah data = listBawah.get(position);
 
         Glide.with(holder.itemView.getContext())
                 .load(data.getGambarMenuBawah())
@@ -54,29 +51,25 @@ public class AdapterMenuBawah extends RecyclerView.Adapter<AdapterMenuBawah.View
             public void onClick(View v) {
                 Intent kedetail = null;
                 if (kategori.equals("Kuliner")){
-                    kedetail = new Intent(context, DetailFoodMasjidActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailFoodMasjidActivity.class);
                 }
                 else if (kategori.equals("Masjid")){
-                    kedetail = new Intent(context, DetailFoodMasjidActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailFoodMasjidActivity.class);
                 }
                 else if (kategori.equals("Penginapan")){
-                    kedetail = new Intent(context, DetailWisataActivity.class);
+                    kedetail = new Intent(holder.itemView.getContext(), DetailWisataActivity.class);
                 }
 
                 kedetail.putExtra("JudulFoodMasjid", data.getTvMenuBawah());
-                kedetail.putExtra("GambarFoodMasjid", data.getGambarMenuBawah());
-                kedetail.putExtra("AsalFoodMasjid", data.getAsalMenuBawah());
-                kedetail.putExtra("DetailFoodMasjid", data.getDetailMenuBawah());
                 kedetail.putExtra("toolbar", kategori);
-
-                context.startActivity(kedetail);
+                holder.itemView.getContext().startActivity(kedetail);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return listBawah.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

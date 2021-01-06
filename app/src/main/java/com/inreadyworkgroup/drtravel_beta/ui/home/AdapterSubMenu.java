@@ -7,13 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.inreadyworkgroup.drtravel_beta.ui.augmentedreality.ARActivity;
-import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.datamenu.DataMenuAtas;
 
 import com.bumptech.glide.Glide;
 import com.inreadyworkgroup.drtravel_beta.R;

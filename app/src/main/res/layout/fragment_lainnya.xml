@@ -22,7 +22,7 @@
             android:id="@+id/image_akun"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/ic_akun" />
+            android:src="@mipmap/ic_akun_fix" />
 
         <TextView
             android:id="@+id/tv_nama_akun"
@@ -44,6 +44,18 @@
             android:layout_marginLeft="20dp"
             android:layout_below="@id/tv_nama_akun"
             android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_id_akun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textAppearance="@style/tv_email_akun"
+            android:layout_toRightOf="@id/tv_email_akun"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@id/tv_nama_akun"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/edit_profil_akun"

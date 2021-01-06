@@ -1,9 +1,6 @@
 package com.inreadyworkgroup.drtravel_beta.ui.wisata;
 
-import android.content.Intent;
-
 import com.inreadyworkgroup.drtravel_beta.R;
-import com.inreadyworkgroup.drtravel_beta.ui.home.ViewModelWisata;
 
 import java.util.ArrayList;
 
