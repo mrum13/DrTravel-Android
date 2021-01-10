@@ -12,7 +12,7 @@ import com.inreadyworkgroup.drtravel_beta.login.LoginActivity;
 import javax.security.auth.login.LoginException;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    private int waktu_loading=4000;
+    private int waktu_loading=3000;
 
     //4000=4 detik
 

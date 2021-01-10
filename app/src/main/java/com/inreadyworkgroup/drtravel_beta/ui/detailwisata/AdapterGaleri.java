@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.inreadyworkgroup.drtravel_beta.R;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelGaleri;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder> {
-    Context context;
-    ArrayList<ViewModelGaleri> list;
+    List<ViewModelGaleri> list;
 
-    public AdapterGaleri(Context context, ArrayList<ViewModelGaleri> list) {
-        this.context = context;
+    public AdapterGaleri(List<ViewModelGaleri> list) {
         this.list = list;
     }
 
@@ -35,7 +36,7 @@ public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder
     public void onBindViewHolder(@NonNull AdapterGaleri.ViewHolder holder, int position) {
         final ViewModelGaleri DA = list.get(position);
 
-        Glide.with(context).load(DA.getGambarGaleri()).into(holder.imgGaleri);
+        Glide.with(holder.itemView.getContext()).load(DA.getGambar()).into(holder.imgGaleri);
     }
 
     @Override

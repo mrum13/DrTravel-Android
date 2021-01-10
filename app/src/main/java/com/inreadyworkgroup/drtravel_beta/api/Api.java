@@ -1,5 +1,7 @@
 package com.inreadyworkgroup.drtravel_beta.api;
 
+import com.inreadyworkgroup.drtravel_beta.models.GalleriResponse;
+import com.inreadyworkgroup.drtravel_beta.models.GalleriResponsePenginapan;
 import com.inreadyworkgroup.drtravel_beta.models.KulinerResponseAtas;
 import com.inreadyworkgroup.drtravel_beta.models.KulinerResponseBawah;
 import com.inreadyworkgroup.drtravel_beta.models.LoginResponse;
@@ -47,15 +49,27 @@ public interface Api {
     Call<WisataResponse> getPopulerWisata();
 
     @FormUrlEncoded
+    @POST("detailWisata")
+    Call<WisataResponse> detailWisata(
+            @Field("nama_tempat") String nama_wisata
+    );
+
+    @FormUrlEncoded
     @POST("searchWisata")
     Call<WisataResponse> searchWisata(
             @Field("nama_tempat") String nama_tempat
     );
 
     @FormUrlEncoded
-    @POST("detailWisata")
-    Call<WisataResponse> detailWisata(
-            @Field("nama_tempat") String nama_wisata
+    @POST("galleriWisata")
+    Call<GalleriResponse> galleriWisata(
+            @Field("nama_tempat") String nama_tempat
+    );
+
+    @FormUrlEncoded
+    @POST("galleriPenginapan")
+    Call<GalleriResponse> galleriPenginapan(
+            @Field("nama_tempat") String nama_tempat
     );
 
     @GET("allKuliner")

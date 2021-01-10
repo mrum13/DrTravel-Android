@@ -15,9 +15,11 @@ import com.bumptech.glide.request.RequestOptions;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.inreadyworkgroup.drtravel_beta.R;
 import com.inreadyworkgroup.drtravel_beta.api.RetrofitClient;
-import com.inreadyworkgroup.drtravel_beta.models.MasjidResponseBawah;
-import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseAtas;
+import com.inreadyworkgroup.drtravel_beta.models.GalleriResponse;
+import com.inreadyworkgroup.drtravel_beta.models.GalleriResponsePenginapan;
 import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseBawah;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelGaleri;
+import com.inreadyworkgroup.drtravel_beta.models.ViewModelGalleriPenginapan;
 import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
@@ -38,9 +40,13 @@ public class DetailWisataActivity extends AppCompatActivity {
     private List<Wisata> listWisata;
     private ViewModelMenuBawah[] detailPenginapan;
     private List<ViewModelMenuBawah> listPenginapan;
+    private ViewModelGaleri[] detailGalleri;
+    private List<ViewModelGaleri> listGalleri;
+    private List<ViewModelGalleriPenginapan> listGalleriPenginapan;
     private String wisata;
     ShimmerFrameLayout shimmerDetail;
     View viewDetail;
+    AdapterGaleri adapterGaleri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +75,6 @@ public class DetailWisataActivity extends AppCompatActivity {
 
         getIncomingIntent();
 
-        rvGalleri.setHasFixedSize(true);
-
-        rvGalleri.setLayoutManager(new GridLayoutManager(this, 3));
-        AdapterGaleri adapterGaleri = new AdapterGaleri(this, listData);
-        rvGalleri.setAdapter(adapterGaleri);
     }
 
     private void getIncomingIntent(){
@@ -92,8 +93,10 @@ public class DetailWisataActivity extends AppCompatActivity {
 
         if (kategori.equals("Penginapan")) {
             dataPenginapanBawah();
+            galleriPenginapan();
         } else  {
             dataWisata();
+            galleriWisata();
         }
     }
 
@@ -121,8 +124,6 @@ public class DetailWisataActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
                 }
-
-
             }
 
             @Override
@@ -163,5 +164,75 @@ public class DetailWisataActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void galleriWisata(){
+        Call<GalleriResponse> call = RetrofitClient.getInstance().getApi().galleriWisata(wisata);
+        call.enqueue(new Callback<GalleriResponse>() {
+            @Override
+            public void onResponse(Call<GalleriResponse> call, Response<GalleriResponse> response) {
+                GalleriResponse galleriResponse =response.body();
+
+                if (!galleriResponse.isError()){
+                    listGalleri = response.body().getGalleri();
+                    if (!listWisata.isEmpty()){
+//                        AdapterWisata adapter = new AdapterWisata(PencarianActivity.this, listWisataResult);
+//                            shimmerPencarian.stopShimmer();
+//                            viewPencarian.setVisibility(View.GONE);
+//                        rvResultWisata.setAdapter(adapter);
+                        showGalleri();
+                    }
+                    else {
+                        Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GalleriResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void galleriPenginapan(){
+        Call<GalleriResponse> call = RetrofitClient.getInstance().getApi().galleriPenginapan(wisata);
+        call.enqueue(new Callback<GalleriResponse>() {
+            @Override
+            public void onResponse(Call<GalleriResponse> call, Response<GalleriResponse> response) {
+                GalleriResponse galleriResponse =response.body();
+                if (!galleriResponse.isError()){
+                    listGalleri = response.body().getGalleri();
+                    if (!listGalleri.isEmpty()){
+//                        AdapterWisata adapter = new AdapterWisata(PencarianActivity.this, listWisataResult);
+//                            shimmerPencarian.stopShimmer();
+//                            viewPencarian.setVisibility(View.GONE);
+//                        rvResultWisata.setAdapter(adapter);
+                        showGalleri();
+                    }
+                    else {
+                        Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                    }
+                }
+                else {
+                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GalleriResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void showGalleri(){
+        rvGalleri.setHasFixedSize(true);
+        rvGalleri.setLayoutManager(new GridLayoutManager(this, 3));
+        adapterGaleri = new AdapterGaleri(listGalleri);
+        rvGalleri.setAdapter(adapterGaleri);
     }
 }
