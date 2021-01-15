@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +19,8 @@ import com.inreadyworkgroup.drtravel_beta.models.MasjidResponseAtas;
 import com.inreadyworkgroup.drtravel_beta.models.MasjidResponseBawah;
 import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseBawah;
 import com.inreadyworkgroup.drtravel_beta.models.PenginapanResponseAtas;
+import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
+import com.inreadyworkgroup.drtravel_beta.ui.erroractivity.ErorrActivity;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.adaptermenu.AdapterMenuAtas;
 import com.inreadyworkgroup.drtravel_beta.ui.home.cardmenu.adaptermenu.AdapterMenuBawah;
 import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuAtas;
@@ -169,7 +172,12 @@ public class WadahMenuActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MasjidResponseBawah> call, Response<MasjidResponseBawah> response) {
                 listBawah = response.body().getMasjid();
-                setAdapterBawah();
+                if (listBawah.isEmpty()){
+                    startActivity(new Intent(WadahMenuActivity.this, ErorrActivity.class));
+                }
+                else{
+                    setAdapterBawah();
+                }
             }
 
             @Override

@@ -55,6 +55,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("streetView")
+    Call<WisataResponse> streetView(
+            @Field("nama_tempat") String nama_wisata
+    );
+
+    @FormUrlEncoded
     @POST("searchWisata")
     Call<WisataResponse> searchWisata(
             @Field("nama_tempat") String nama_tempat

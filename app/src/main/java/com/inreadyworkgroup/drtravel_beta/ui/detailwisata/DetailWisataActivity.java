@@ -1,11 +1,15 @@
 package com.inreadyworkgroup.drtravel_beta.ui.detailwisata;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +27,9 @@ import com.inreadyworkgroup.drtravel_beta.models.ViewModelGalleriPenginapan;
 import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
+import com.inreadyworkgroup.drtravel_beta.ui.erroractivity.ErorrActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailWisataActivity extends AppCompatActivity {
+public class DetailWisataActivity extends AppCompatActivity implements RecyclerOnItemClickListener {
     ImageView btnBack,imgDetailAtas;
     TextView tvJudulDetail,tvAsalDetail,tvIsiDetail,tvToolbar;
     RecyclerView rvGalleri;
@@ -43,10 +49,12 @@ public class DetailWisataActivity extends AppCompatActivity {
     private ViewModelGaleri[] detailGalleri;
     private List<ViewModelGaleri> listGalleri;
     private List<ViewModelGalleriPenginapan> listGalleriPenginapan;
-    private String wisata;
-    ShimmerFrameLayout shimmerDetail;
+    private String wisata,kordinatView,kategori;
+    private CardView btnCari,btnVr;
+    private ShimmerFrameLayout shimmerDetail;
     View viewDetail;
-    AdapterGaleri adapterGaleri;
+    private AdapterGaleri adapterGaleri;
+    private Uri URLStreetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +68,8 @@ public class DetailWisataActivity extends AppCompatActivity {
         tvIsiDetail = findViewById(R.id.tv_isi_detail_wisata);
         tvToolbar = findViewById(R.id.tv_kembali);
         viewDetail=(View)findViewById(R.id.view_detail);
+        btnCari = findViewById(R.id.card_btn_lokasi);
+        btnVr = findViewById(R.id.card_btn_VR);
 
         shimmerDetail= (ShimmerFrameLayout)findViewById(R.id.shimmer_detail);
         shimmerDetail.startShimmer(); //start Shimmer animation of shimmer
@@ -75,13 +85,33 @@ public class DetailWisataActivity extends AppCompatActivity {
 
         getIncomingIntent();
 
+        //open Google maps location
+        btnCari.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + wisata);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
+        //open VR
+        btnVr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cekKordinat();
+                }
+            });
     }
 
     private void getIncomingIntent(){
         if(getIntent().hasExtra("JudulFoodMasjid") && getIntent().hasExtra("toolbar")) {
             wisata = getIntent().getStringExtra("JudulFoodMasjid");
-            String kategori = getIntent().getStringExtra("toolbar");
-//            int image_detail = getIntent().getIntExtra("GambarFoodMasjid", 0);
+            kategori = getIntent().getStringExtra("toolbar");
+            if(kategori.equals("Penginapan")){
+                btnVr.setVisibility(View.GONE);
+            }
 
             setDetail(wisata,kategori);
         }
@@ -175,19 +205,15 @@ public class DetailWisataActivity extends AppCompatActivity {
 
                 if (!galleriResponse.isError()){
                     listGalleri = response.body().getGalleri();
-                    if (!listWisata.isEmpty()){
-//                        AdapterWisata adapter = new AdapterWisata(PencarianActivity.this, listWisataResult);
-//                            shimmerPencarian.stopShimmer();
-//                            viewPencarian.setVisibility(View.GONE);
-//                        rvResultWisata.setAdapter(adapter);
+                    if (!listGalleri.isEmpty()){
                         showGalleri();
                     }
                     else {
-                        Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(DetailWisataActivity.this, ErorrActivity.class));
                     }
                 }
                 else {
-                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(DetailWisataActivity.this, ErorrActivity.class));
                 }
             }
 
@@ -207,10 +233,6 @@ public class DetailWisataActivity extends AppCompatActivity {
                 if (!galleriResponse.isError()){
                     listGalleri = response.body().getGalleri();
                     if (!listGalleri.isEmpty()){
-//                        AdapterWisata adapter = new AdapterWisata(PencarianActivity.this, listWisataResult);
-//                            shimmerPencarian.stopShimmer();
-//                            viewPencarian.setVisibility(View.GONE);
-//                        rvResultWisata.setAdapter(adapter);
                         showGalleri();
                     }
                     else {
@@ -232,7 +254,47 @@ public class DetailWisataActivity extends AppCompatActivity {
     private void showGalleri(){
         rvGalleri.setHasFixedSize(true);
         rvGalleri.setLayoutManager(new GridLayoutManager(this, 3));
-        adapterGaleri = new AdapterGaleri(listGalleri);
+        adapterGaleri = new AdapterGaleri(listGalleri,this);
         rvGalleri.setAdapter(adapterGaleri);
+    }
+
+    private void cekKordinat(){
+        Call<WisataResponse> call = RetrofitClient.getInstance().getApi().streetView(wisata);
+        call.enqueue(new Callback<WisataResponse>() {
+            @Override
+            public void onResponse(Call<WisataResponse> call, Response<WisataResponse> response) {
+                WisataResponse wisataResponse =response.body();
+                if (!wisataResponse.isError()){
+                    listWisata = response.body().getWisata();
+                    detailWisata = listWisata.toArray(new Wisata[0]);
+                    kordinatView = detailWisata[0].getKordinat();
+                    setKordinat(kordinatView);
+                }
+                else {
+                    Toast.makeText(DetailWisataActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WisataResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void setKordinat(String kdr){
+        URLStreetView = Uri.parse("google.streetview:cbll="+kdr);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, URLStreetView);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent keDetail = new Intent(DetailWisataActivity.this, DetailGaleri.class);
+        keDetail.putExtra("position", position);
+        keDetail.putExtra("wisata", wisata);
+        keDetail.putExtra("ktgr", kategori);
+        startActivity(keDetail);
     }
 }

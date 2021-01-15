@@ -19,9 +19,11 @@ import java.util.List;
 
 public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder> {
     List<ViewModelGaleri> list;
+    RecyclerOnItemClickListener mItemClickListener;
 
-    public AdapterGaleri(List<ViewModelGaleri> list) {
+    public AdapterGaleri(List<ViewModelGaleri> list, RecyclerOnItemClickListener mItemClickListener) {
         this.list = list;
+        this.mItemClickListener = mItemClickListener;
     }
 
     @NonNull
@@ -51,6 +53,12 @@ public class AdapterGaleri extends RecyclerView.Adapter<AdapterGaleri.ViewHolder
             super(itemView);
 
             imgGaleri = itemView.findViewById(R.id.imgGaleri);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mItemClickListener.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 }

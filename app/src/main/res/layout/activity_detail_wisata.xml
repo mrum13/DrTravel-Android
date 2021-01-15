@@ -65,11 +65,37 @@
                 android:text="Lokasi Tempat"/>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_btn_lokasi"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                app:cardCornerRadius="5dp"
+                android:layout_below="@id/img_detail_wisata"
+                android:layout_marginTop="15dp"
+                android:layout_alignRight="@id/img_detail_wisata"
+                app:cardBackgroundColor="@color/colorAccent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/image_lokasi"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_bantuan"
+                        android:layout_centerInParent="true"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/card_btn_VR"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 app:cardCornerRadius="5dp"
-                android:layout_alignRight="@id/img_detail_wisata"
+                android:layout_toLeftOf="@id/card_btn_lokasi"
+                android:layout_marginRight="12dp"
                 android:layout_below="@id/img_detail_wisata"
                 android:layout_marginTop="15dp"
                 android:background="@color/cardView">
@@ -82,20 +108,9 @@
                         android:id="@+id/image_vr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_vr"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="VR"
-                        android:textAppearance="@style/vr"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/image_vr"/>
-
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_vr" />
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
 
 
@@ -117,7 +132,7 @@
                 android:layout_below="@id/tv_isi_detail_wisata"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
-                android:text="Galleri"/>
+                android:text="Galeri"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_galeri_wisata_detail"

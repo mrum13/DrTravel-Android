@@ -11,8 +11,11 @@
         android:id="@+id/toolbar_detail_foodmasjid"/>
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/btn_cari_food_masjid"
+        android:layout_marginBottom="30dp"
         android:layout_below="@id/toolbar_detail_foodmasjid">
 
         <RelativeLayout
@@ -70,5 +73,4 @@
         android:background="@color/colorbtn"
         android:text="@string/cari_makanmasjid"
         android:textAppearance="@style/btn_cari_makanmasjid"/>
-
 </RelativeLayout>

@@ -1,23 +1,20 @@
 package com.inreadyworkgroup.drtravel_beta.models;
 
 public class Wisata {
-    private String nama_tempat, lokasi_tempat, deskripsi,gambar;
+    private String nama_tempat, lokasi_tempat, deskripsi,gambar,kordinat;
     private boolean isChecked;
 
-    public Wisata(String nama_tempat, String lokasi_tempat, String deskripsi, String gambar) {
-
+    public Wisata(String nama_tempat, String lokasi_tempat, String deskripsi, String gambar, String kordinat, boolean isChecked) {
         this.nama_tempat = nama_tempat;
         this.lokasi_tempat = lokasi_tempat;
         this.deskripsi = deskripsi;
         this.gambar = gambar;
+        this.kordinat = kordinat;
+        this.isChecked = isChecked;
     }
 
     public void setChecked(boolean checked) {
         isChecked = checked;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
     }
 
     public String getNama_tempat() {
@@ -36,4 +33,11 @@ public class Wisata {
         return gambar;
     }
 
+    public String getKordinat() {
+        return kordinat;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
 }

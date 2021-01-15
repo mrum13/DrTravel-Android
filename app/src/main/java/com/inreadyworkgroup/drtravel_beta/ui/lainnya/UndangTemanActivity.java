@@ -2,17 +2,20 @@ package com.inreadyworkgroup.drtravel_beta.ui.lainnya;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inreadyworkgroup.drtravel_beta.R;
 
 public class UndangTemanActivity extends AppCompatActivity {
     TextView toolbarAjak;
-    Button btnAjak,btnBack;
+    Button btnAjak;
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,14 @@ public class UndangTemanActivity extends AppCompatActivity {
 
         toolbarAjak = findViewById(R.id.tv_kembali);
         btnAjak = findViewById(R.id.btn_ajakteman);
+        btnBack = findViewById(R.id.btn_back);
 
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         toolbarAjak.setText("Undang Teman");
         btnAjak.setOnClickListener(new View.OnClickListener() {

@@ -25,6 +25,7 @@ import com.inreadyworkgroup.drtravel_beta.models.ViewModelMenuBawah;
 import com.inreadyworkgroup.drtravel_beta.models.Wisata;
 import com.inreadyworkgroup.drtravel_beta.models.WisataResponse;
 import com.inreadyworkgroup.drtravel_beta.ui.detailwisata.DetailWisataActivity;
+import com.inreadyworkgroup.drtravel_beta.ui.erroractivity.ErorrActivity;
 
 import java.util.List;
 
@@ -157,7 +158,7 @@ public class DetailFoodMasjidActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(DetailFoodMasjidActivity.this, "Data tidak ditemukan",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(DetailFoodMasjidActivity.this, ErorrActivity.class));
                 }
             }
 

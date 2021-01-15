@@ -28,7 +28,8 @@ import retrofit2.Response;
 public class EditProfileActivity extends AppCompatActivity {
     private EditText et_nama_edit, et_email_edit;
     String nama,email;
-    TextView dialogOk;
+    private ImageView btnBack;
+    private TextView dialogOk,tvKembali;
     private int id;
 
     @Override
@@ -38,6 +39,17 @@ public class EditProfileActivity extends AppCompatActivity {
 
         et_nama_edit = findViewById(R.id.et_editnama_profile);
         et_email_edit = findViewById(R.id.et_editemail_profile);
+
+        tvKembali = findViewById(R.id.tv_kembali);
+        btnBack = findViewById(R.id.btn_back);
+        tvKembali.setText("Ubah Akun");
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         getIncomingIntent();
 //
