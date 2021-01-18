@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.inreadyworkgroup.drtravel_beta">
+    package="com.drcorp.drtravel">
 
     <uses-feature android:name="android.hardware.camera.ar" />
 
@@ -15,22 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.erroractivity.ErorrActivity"></activity>
-        <activity android:name=".ui.detailwisata.DetailGaleri"></activity>
-        <activity android:name=".ui.augmentedreality.ARActivity"></activity>
-        <activity android:name=".ui.lainnya.UndangTemanActivity" />
-        <activity android:name=".ui.lainnya.EditProfileActivity" />
-        <activity android:name=".ui.detailfoodmasjid.DetailFoodMasjidActivity" />
-        <activity android:name=".ui.detailwisata.DetailWisataActivity" />
-        <activity android:name=".ui.home.pencarian.PencarianActivity" />
-        <activity android:name=".ui.home.cardmenu.WadahMenuActivity" />
-        <activity android:name=".ui.lainnya.InfoAppActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".login.LoginActivity" />
-        <activity android:name=".login.RegisterActivity" />
-        <activity android:name=".login.LupaSandiActivity" />
-        <activity android:name=".login.LupaSandiActivity2" />
-        <activity android:name=".splashscreen.SplashScreenActivity">
+        <activity android:name="com.drcorp.drtravel.ui.erroractivity.ErorrActivity"></activity>
+        <activity android:name="com.drcorp.drtravel.ui.detailwisata.DetailGaleri"></activity>
+        <activity android:name="com.drcorp.drtravel.ui.lainnya.UndangTemanActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.lainnya.EditProfileActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.detailfoodmasjid.DetailFoodMasjidActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.detailwisata.DetailWisataActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.home.pencarian.PencarianActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.home.cardmenu.WadahMenuActivity" />
+        <activity android:name="com.drcorp.drtravel.ui.lainnya.InfoAppActivity" />
+        <activity android:name="com.drcorp.drtravel.MainActivity" />
+        <activity android:name="com.drcorp.drtravel.login.LoginActivity" />
+        <activity android:name="com.drcorp.drtravel.login.RegisterActivity" />
+        <activity android:name="com.drcorp.drtravel.login.LupaSandiActivity" />
+        <activity android:name="com.drcorp.drtravel.login.LupaSandiActivity2" />
+        <activity android:name="com.drcorp.drtravel.splashscreen.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

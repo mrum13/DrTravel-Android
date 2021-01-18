@@ -56,15 +56,15 @@
 <!--                android:src="@drawable/bola_background"-->
 <!--                android:layout_marginRight="24dp"/>-->
 
-        <CheckBox
-            android:id="@+id/cb_favorit"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_item_wisata"
-            android:layout_below="@id/img_item_wisata"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="24dp"/>
+<!--        <CheckBox-->
+<!--            android:id="@+id/cb_favorit"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/img_item_wisata"-->
+<!--            android:layout_below="@id/img_item_wisata"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginRight="24dp"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

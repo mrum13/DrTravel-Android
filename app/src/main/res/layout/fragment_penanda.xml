@@ -9,12 +9,19 @@
         layout="@layout/toolbar_menu"
         android:id="@+id/toolbar_favorit"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_favorit"
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_favorit"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/toolbar_favorit"-->
+<!--        android:layout_marginVertical="20dp"-->
+<!--        android:layout_marginHorizontal="15dp"/>-->
+
+    <ImageView
+        android:layout_below="@id/toolbar_favorit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_favorit"
-        android:layout_marginVertical="20dp"
-        android:layout_marginHorizontal="15dp"/>
+        android:src="@drawable/comingsoon"
+        android:scaleType="centerCrop"/>
 
 </RelativeLayout>

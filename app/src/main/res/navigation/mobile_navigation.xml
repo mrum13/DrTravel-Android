@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.inreadyworkgroup.drtravel_beta.ui.home.HomeFragment"
+        android:name="com.drcorp.drtravel.ui.home.HomeFragment"
         android:label="Beranda"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_wisata"
-        android:name="com.inreadyworkgroup.drtravel_beta.ui.wisata.WisataFragment"
+        android:name="com.drcorp.drtravel.ui.wisata.WisataFragment"
         android:label="Wisata"
         tools:layout="@layout/fragment_wisata" />
 
     <fragment
         android:id="@+id/navigation_penanda"
-        android:name="com.inreadyworkgroup.drtravel_beta.ui.penanda.PenandaFragment"
+        android:name="com.drcorp.drtravel.ui.penanda.PenandaFragment"
         android:label="Penanda"
         tools:layout="@layout/fragment_penanda" />
 
     <fragment
         android:id="@+id/navigation_lainnya"
-        android:name="com.inreadyworkgroup.drtravel_beta.ui.lainnya.LainnyaFragment"
+        android:name="com.drcorp.drtravel.ui.lainnya.LainnyaFragment"
         android:label="Lainnya"
         tools:layout="@layout/fragment_lainnya" />
 
