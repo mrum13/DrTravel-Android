@@ -47,9 +47,16 @@ public class AdapterSubMenu extends RecyclerView.Adapter<AdapterSubMenu.ViewHold
             public void onClick(View v) {
                 switch (position) {
                     case 0:
-//                        Intent kear = new Intent(context, ARActivity.class);
-//                        context.startActivity(kear);
-                        Toast.makeText(context, "Sedang ada perbaikan", Toast.LENGTH_SHORT).show();
+//                        Intent arIntent = new Intent(Intent.ACTION_VIEW);
+//                        arIntent.setPackage("com.drcorp.ARDrTravel");
+//                        if(arIntent==null){
+//                            Toast.makeText(context, "Sedang ada perbaikan",Toast.LENGTH_SHORT).show();
+//                        }
+//                        else {
+//                            context.startActivity(arIntent);
+//                        }
+                        Toast.makeText(context, "Sedang ada perbaikan",Toast.LENGTH_SHORT).show();
+
                         break;
                     case 1:
                         Intent kefood = new Intent(context, WadahMenuActivity.class);
